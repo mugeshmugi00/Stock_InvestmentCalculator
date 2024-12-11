@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # static directry 
-STATIC_DIRS = [os.path.join(BASE_DIR, 'myProj/static')]
+STATIC_DIRS = [os.path.join(BASE_DIR, 'myproj/static')]
 #static root directory
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
