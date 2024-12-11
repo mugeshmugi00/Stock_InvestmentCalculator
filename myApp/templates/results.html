@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Results</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="results-container">
+        <h2 class="results-heading">Investment Calculation Results</h2>
+        
+        <table class="results-table">
+            <thead>
+                <tr class="table-header">
+                    <th class="table-cell">Ticker</th>
+                    <th class="table-cell">Weightage</th>
+                    <th class="table-cell">Investment Amount</th>
+                    {% for date in dates %}
+                        <th class="table-cell">{{ date }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticker, data in results.items() %}
+                    <tr class="table-row">
+                        <td class="table-cell">{{ ticker }}</td>
+                        <td class="table-cell">{{ data.Weightage }}</td>
+                        <td class="table-cell">{{ data.Investment }}</td>
+                        {% for date in dates %}
+                            <td class="table-cell">{{ data|get_item_from_dict:"date" }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="download-link">
+            <a href="{{ file_path }}">Download the Excel file with results</a>
+        </p>
+
+        <a class="back-button" href="{% url 'main' %}">Back to Form</a>
+    </div>
+</body>
+</html>
